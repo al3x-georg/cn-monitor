@@ -1,0 +1,31 @@
+# Specify that .yml files are detectable by Linguist
+*.yml linguist-detectable=true
+
+# Specify that .json files are not detectable by Linguist
+*.json linguist-detectable=false
+
+# Specify that .rb files are detectable by Linguist
+*.rb linguist-detectable=true
+
+# Specify that .py files should be categorized as Python language
+*.py linguist-language=python
+
+# Categorize the following files as Shell language
+# Add comments to explain each file
+# For example:
+# - "default" file contains default configuration for Alerta.io
+# - "nginx-sites-enabled-bbb" and "cn-monitor-1.cn.ece.ntua.gr" are Nginx configuration files
+# - "30-elasticsearch-output.conf" is an Elasticsearch configuration file
+# - "02-beats-input.conf" is a Filebeat configuration file
+
+*.sh linguist-language=Shell
+nginx-sites-enabled-bbb linguist-language=Shell
+cn-monitor-1.cn.ece.ntua.gr linguist-language=Shell
+30-elasticsearch-output.conf linguist-language=Shell
+02-beats-input.conf linguist-language=Shell
+
+# Specify that .ini, .service, and .env files are Shell scripts as well
+# You can add comments for these files as needed
+*.ini linguist-language=Shell
+*.service linguist-language=Shell
+*.env linguist-language=Shell
