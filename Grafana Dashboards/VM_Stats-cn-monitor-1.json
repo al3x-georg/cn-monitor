@@ -1,0 +1,2731 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "limit": 100,
+        "name": "Annotations & Alerts",
+        "showIn": 0,
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "VMware ESXi single instance graphs.",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": 10076,
+  "graphTooltip": 1,
+  "id": 37,
+  "iteration": 1668442698158,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 81,
+      "panels": [],
+      "title": "High level stats",
+      "type": "row"
+    },
+    {
+      "description": "Name of Host.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 10,
+        "x": 0,
+        "y": 1
+      },
+      "id": 57,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "textMode": "name"
+      },
+      "pluginVersion": "8.4.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ljhTj8Enk"
+          },
+          "exemplar": false,
+          "expr": "vmware_host_hardware_info{job=~\"$job\"} ",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{host_name}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Host name",
+      "type": "stat"
+    },
+    {
+      "description": "Uptime of Host.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 10,
+        "y": 1
+      },
+      "id": 61,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.4.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ljhTj8Enk"
+          },
+          "exemplar": true,
+          "expr": "time()-(vmware_host_boot_timestamp_seconds{job=~\"$job\", dc_name=~\"$dc_name\", cluster_name=\"\"})",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Host uptime",
+      "type": "stat"
+    },
+    {
+      "description": "Total count of Virtual Machines, regardless of power state.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 13,
+        "y": 1
+      },
+      "id": 67,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.4.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ljhTj8Enk"
+          },
+          "exemplar": true,
+          "expr": "count(vmware_vm_power_state{job=~\"$job\"})",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Total VMs",
+      "type": "stat"
+    },
+    {
+      "description": "Count of Virtual Machines that are currently powered on.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 17,
+        "y": 1
+      },
+      "id": 69,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.4.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ljhTj8Enk"
+          },
+          "exemplar": true,
+          "expr": "count(vmware_vm_power_state{job=~\"$job\"} > 0)",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Powered on VMs",
+      "type": "stat"
+    },
+    {
+      "description": "Count of Virtual Machines that are currently powered off.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 21,
+        "y": 1
+      },
+      "id": 59,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "limit": 1,
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.4.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ljhTj8Enk"
+          },
+          "exemplar": true,
+          "expr": "count(vmware_vm_power_state{job=~\"$job\"}) - count(vmware_vm_power_state{job=~\"$job\"} == 1)",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Powered off VMs",
+      "type": "stat"
+    },
+    {
+      "description": "Names of powered on VMs.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      },
+      "id": 36,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "count"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "text": {
+          "valueSize": 25
+        },
+        "textMode": "name"
+      },
+      "pluginVersion": "8.4.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ljhTj8Enk"
+          },
+          "exemplar": false,
+          "expr": "vmware_vm_boot_timestamp_seconds{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "VM: {{vm_name}} Datacenter: {{dc_name}} Datastore: {{ds_name}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Powered on VMs",
+      "type": "stat"
+    },
+    {
+      "description": "Average uptime (time powered on) of each Virtual Machine.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 15
+      },
+      "id": 63,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "text": {},
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "8.4.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ljhTj8Enk"
+          },
+          "exemplar": false,
+          "expr": "time()-(vmware_vm_boot_timestamp_seconds{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\"})",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "VM: {{vm_name}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Average VM uptime",
+      "type": "stat"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "id": 49,
+      "panels": [
+        {
+          "description": "Number of Virtual CPUs assigned to each VM.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 15,
+            "w": 24,
+            "x": 0,
+            "y": 21
+          },
+          "id": 71,
+          "options": {
+            "displayMode": "basic",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true
+          },
+          "pluginVersion": "8.4.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": false,
+              "expr": "vmware_vm_num_cpu{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "instant": true,
+              "interval": "",
+              "legendFormat": "VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "A"
+            }
+          ],
+          "title": "VCPUs per VM",
+          "transparent": true,
+          "type": "bargauge"
+        },
+        {
+          "description": "Usage: Amount of actively used virtual CPU, as a percentage of total available CPU. This is the host's view of the CPU usage, not the guest operating system view. It is the average CPU utilization over all available virtual CPUs in the virtual machine. For example, if a virtual machine with one virtual CPU is running on a host that has four physical CPUs and the CPU usage is 100%, the virtual machine is using one physical CPU completely.\n\nDemand: The amount of CPU resources a virtual machine would use if there were no CPU contention or CPU limit.\n",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 36
+          },
+          "id": 17,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max",
+                "min"
+              ],
+              "displayMode": "table",
+              "placement": "right"
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.4.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_cpu_usage_average{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}/vmware_vm_max_cpu_usage{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}*100",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "CPU Usage: VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_cpu_demand_average{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}/vmware_vm_max_cpu_usage{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}*100",
+              "format": "time_series",
+              "interval": "",
+              "legendFormat": "CPU Demand: VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "B"
+            }
+          ],
+          "title": "VM CPU Usage",
+          "transparent": true,
+          "type": "timeseries"
+        },
+        {
+          "description": "Usage: Amount of actively used virtual CPU. This is the host's view of the CPU usage, not the guest operating system view.\n\nDemand: The amount of CPU resources a virtual machine would use if there were no CPU contention or CPU limit.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "Hertz (Hz)",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "hertz"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 46
+          },
+          "id": 75,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max",
+                "min"
+              ],
+              "displayMode": "table",
+              "placement": "right"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "(vmware_vm_cpu_usagemhz_average{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"})*1000000",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "CPU Usage: VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "(vmware_vm_cpu_demand_average{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"})*1000000",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "CPU Demand: VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "A"
+            }
+          ],
+          "title": "VM CPU usage (MHz)",
+          "transparent": true,
+          "type": "timeseries"
+        },
+        {
+          "description": "Ready: Time that the virtual machine was ready, but could not get scheduled to run on the physical CPU during last measurement interval. CPU ready time is dependent on the number of virtual machines on the host and their CPU loads.\n\nCo-Stop: Time the virtual machine is ready to run, but is unable to run due to co-scheduling constraints\n\nIdle: Total time that the CPU spent in an idle state\n",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "Seconds (s)",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 1,
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "ms"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 56
+          },
+          "id": 39,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max",
+                "min"
+              ],
+              "displayMode": "table",
+              "placement": "right"
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.4.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_cpu_ready_summation{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "Cpu Ready: VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_cpu_costop_summation{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "format": "time_series",
+              "interval": "",
+              "legendFormat": "Co-Stop:  VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_cpu_idle_summation{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "Idle: VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "C"
+            }
+          ],
+          "title": "VM CPU time utilization",
+          "transparent": true,
+          "type": "timeseries"
+        },
+        {
+          "description": "Time the virtual machine is ready to run, but is not running because it has reached its maximum CPU limit setting.\n",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "Seconds (s)",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "ms"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 66
+          },
+          "id": 101,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max",
+                "min"
+              ],
+              "displayMode": "table",
+              "placement": "right"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_cpu_maxlimited_summation{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "interval": "",
+              "legendFormat": "Max limited: VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "A"
+            }
+          ],
+          "title": "CPU max limited ",
+          "transparent": true,
+          "type": "timeseries"
+        }
+      ],
+      "title": "CPU",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "id": 51,
+      "panels": [
+        {
+          "description": "VM maximum memory availability in Megabytes.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "Bytes (B)",
+                "axisPlacement": "auto",
+                "axisSoftMin": 0,
+                "fillOpacity": 80,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineWidth": 0,
+                "scaleDistribution": {
+                  "type": "linear"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "decmbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 14,
+            "w": 24,
+            "x": 0,
+            "y": 22
+          },
+          "id": 15,
+          "links": [],
+          "maxDataPoints": 100,
+          "options": {
+            "barRadius": 0,
+            "barWidth": 0.9,
+            "groupWidth": 0.7,
+            "legend": {
+              "calcs": [],
+              "displayMode": "hidden",
+              "placement": "right"
+            },
+            "orientation": "auto",
+            "showValue": "always",
+            "stacking": "none",
+            "text": {
+              "valueSize": 20
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            },
+            "xField": "vm_name",
+            "xTickLabelRotation": 0,
+            "xTickLabelSpacing": 0
+          },
+          "pluginVersion": "8.4.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": false,
+              "expr": "vmware_vm_memory_max{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "format": "table",
+              "instant": true,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "VM memory Capacity",
+          "type": "barchart"
+        },
+        {
+          "description": "Memory usage as percentage of total configured or available memory.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 36
+          },
+          "id": 87,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max",
+                "min"
+              ],
+              "displayMode": "table",
+              "placement": "right"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "(vmware_vm_mem_usage_average{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}) / vmware_vm_memory_max{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"} *100",
+              "interval": "",
+              "legendFormat": "Usage: VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "A"
+            }
+          ],
+          "title": "VM average memory usage",
+          "type": "timeseries"
+        },
+        {
+          "description": "Active:  Amount of guest “physical” memory actively used.\n\nConsumed: Amount of guest physical memory consumed by the virtual machine for guest memory. Consumed memory does not include overhead memory. It includes shared memory and memory that might be reserved, but not actually used. Use this metric for charge-back purposes.\n",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "Bytes (B)",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "deckbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 24,
+            "x": 0,
+            "y": 44
+          },
+          "id": 77,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max",
+                "min"
+              ],
+              "displayMode": "table",
+              "placement": "right"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_mem_active_average{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "hide": false,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "Active: VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_mem_consumed_average{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "instant": false,
+              "interval": "",
+              "legendFormat": "Consumed:  VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "B"
+            }
+          ],
+          "title": "VM active and consumed memory usage (GB)",
+          "transparent": true,
+          "type": "timeseries"
+        },
+        {
+          "description": "Swapped: Current amount of guest physical memory swapped out to the virtual machine swap file by the VMkernel. Swapped memory stays on disk until the virtual machine needs it. This statistic refers to VMkernel swapping and not to guest OS swapping.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "Bytes/sec (B/s)",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 1,
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "KBs"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 53
+          },
+          "id": 41,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max",
+                "min"
+              ],
+              "displayMode": "table",
+              "placement": "right"
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.4.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_mem_swapped_average{job=~\"$job\", vm_name=~\"$vm\"}",
+              "interval": "",
+              "legendFormat": "Swapped: datacenter: {{ dc_name }} vm: {{ cluster_name }} {{ vm_name }}",
+              "refId": "A"
+            }
+          ],
+          "title": "VM memory swapped",
+          "transparent": true,
+          "type": "timeseries"
+        },
+        {
+          "description": "Balloning: Amount of memory allocated by the virtual machine memory control driver (vmmemctl), which is installed with VMware Tools. It is a VMware exclusive memory-management driver that controls ballooning. It is the amount of guest physical memory that is currently reclaimed from the virtual machine through ballooning. This is the amount of guest physical memory that has been allocated and pinned by the balloon driver.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "Bytes/sec (B/s)",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "KBs"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 63
+          },
+          "id": 107,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max",
+                "min"
+              ],
+              "displayMode": "table",
+              "placement": "right"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_mem_vmmemctl_average{job=~\"$job\", vm_name=~\"$vm\"}",
+              "interval": "",
+              "legendFormat": "Ballooning: Vm: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "A"
+            }
+          ],
+          "title": "VM Ballooning",
+          "type": "timeseries"
+        }
+      ],
+      "title": "Memory",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "id": 53,
+      "panels": [
+        {
+          "description": "Received: average rate at which data was received during the interval. This represents the bandwidth of the network.\n\nTransmitted: Average rate at which data was transmitted during the interval. This represents the bandwidth of the network.\n",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "Bytes/sec (B/s)",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 1,
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "KBs"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 24,
+            "x": 0,
+            "y": 4
+          },
+          "id": 19,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max",
+                "min"
+              ],
+              "displayMode": "table",
+              "placement": "right"
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.4.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": false,
+              "expr": "vmware_vm_net_received_average{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}+ vmware_vm_net_transmitted_average{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "Total Usage: Vm: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": false,
+              "expr": "vmware_vm_net_received_average{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "interval": "",
+              "legendFormat": "Received: VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": false,
+              "expr": "vmware_vm_net_transmitted_average{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "Transmitted: VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "C"
+            }
+          ],
+          "title": "VM Network utilization",
+          "transparent": true,
+          "type": "timeseries"
+        },
+        {
+          "description": "Broadcast Rx: Number of broadcast packets received during the sampling interval.\n\nBroadcast Tx: Number of broadcast packets transmitted during the sampling interval.\n\nMulticast Rx: Number of multicast packets received during the sampling interval.\n\nMulticast Tx: Number of multicast packets transmitted during the sampling interval.\n",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "Packets",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 24,
+            "x": 0,
+            "y": 13
+          },
+          "id": 105,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max",
+                "min"
+              ],
+              "displayMode": "table",
+              "placement": "right"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_net_broadcastTx_summation{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "interval": "",
+              "legendFormat": "Broadcast Tx packets: VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_net_broadcastRx_summation{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "Broadcast Rx packets: VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_net_multicastTx_summation{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "Multicast Tx packets: VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "C"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_net_multicastRx_summation{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "Multicast Rx packets: VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "D"
+            }
+          ],
+          "title": "Broadcast and multicast packets",
+          "type": "timeseries"
+        },
+        {
+          "description": "Dropped Rx packets: Number of received packets dropped during the collection interval.\nDropped Tx packets: Number of transmitted packets dropped during the collection interval.\n",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "Packets",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 22
+          },
+          "id": 42,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max",
+                "min"
+              ],
+              "displayMode": "table",
+              "placement": "right"
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.4.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_net_droppedRx_summation{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "interval": "",
+              "legendFormat": "Dropped Rx packets: VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_net_droppedTx_summation{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "Dropped Tx packets: VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "B"
+            }
+          ],
+          "title": "VM dropped network packets",
+          "transparent": true,
+          "type": "timeseries"
+        }
+      ],
+      "title": "Network",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 23
+      },
+      "id": 55,
+      "panels": [
+        {
+          "description": "Disk capacity per partition.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "Bytes (B)",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "bytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 24,
+            "x": 0,
+            "y": 24
+          },
+          "id": 91,
+          "options": {
+            "legend": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "right"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_guest_disk_capacity{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "interval": "",
+              "legendFormat": "Capacity:  VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }} Partition: {{partition}}",
+              "refId": "A"
+            }
+          ],
+          "title": "Disk capacity per partition",
+          "type": "timeseries"
+        },
+        {
+          "description": "Free Disk space per partition.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "Bytes (B)",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "bytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 24,
+            "x": 0,
+            "y": 33
+          },
+          "id": 93,
+          "options": {
+            "legend": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "right"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.4.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_guest_disk_free{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "instant": false,
+              "interval": "",
+              "legendFormat": "Free capacity: Vm: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}  Partition: {{partition}}",
+              "refId": "A"
+            }
+          ],
+          "title": "Free Disk space per partition",
+          "type": "timeseries"
+        },
+        {
+          "description": "Number of read and write kilobytes from the disk each second during the collection interval.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "Bytes/sec (B/s)",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 1,
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "KBs"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 12,
+            "w": 24,
+            "x": 0,
+            "y": 42
+          },
+          "id": 20,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max",
+                "min"
+              ],
+              "displayMode": "table",
+              "placement": "right"
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.4.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_disk_read_average{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"} + vmware_vm_disk_write_average{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "format": "time_series",
+              "instant": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "Total Usage: Vm: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_disk_read_average{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "interval": "",
+              "legendFormat": "Read Usage: datacenter: {{ dc_name }} vm: {{ cluster_name }} {{ vm_name }}",
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_disk_write_average{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "interval": "",
+              "legendFormat": "Write Usage: datacenter: {{ dc_name }} vm: {{ cluster_name }} {{ vm_name }}",
+              "refId": "C"
+            }
+          ],
+          "title": "VM Disk Read And Write",
+          "transparent": true,
+          "type": "timeseries"
+        },
+        {
+          "description": "Latency: Highest latency value across all disks used by the host. Latency measures the time taken to process a SCSI command issued by the guest OS to the virtual machine. The kernel latency is the time VMkernel takes to process an IO request. The device latency is the time it takes the hardware to handle the request.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "Seconds (s)",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "links": [],
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "ms"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 54
+          },
+          "id": 43,
+          "links": [],
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max",
+                "min"
+              ],
+              "displayMode": "table",
+              "placement": "right"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "pluginVersion": "8.4.4",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_disk_maxTotalLatency_latest{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "Disk Latency: Vm: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}",
+              "refId": "A"
+            }
+          ],
+          "title": "Maximum VM disk latency",
+          "transparent": true,
+          "type": "timeseries"
+        }
+      ],
+      "title": "Disk",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 24
+      },
+      "id": 89,
+      "panels": [
+        {
+          "description": "VM tools version.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "max": 1,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 25
+          },
+          "id": 97,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "table",
+              "placement": "right"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_guest_tools_version{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "interval": "",
+              "legendFormat": "VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}Tools version: {{tools_version}}",
+              "refId": "A"
+            }
+          ],
+          "title": "VM tools version",
+          "type": "timeseries"
+        },
+        {
+          "description": "VM tools version status.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "max": 1,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 32
+          },
+          "id": 99,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "table",
+              "placement": "right"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_guest_tools_version_status{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "interval": "",
+              "legendFormat": "VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}Tools version status: {{tools_version_status}}",
+              "refId": "A"
+            }
+          ],
+          "title": "VM tools version status",
+          "type": "timeseries"
+        },
+        {
+          "description": "VM tools running status.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "hue",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "max": 1,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 39
+          },
+          "id": 95,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "table",
+              "placement": "right"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "ljhTj8Enk"
+              },
+              "exemplar": true,
+              "expr": "vmware_vm_guest_tools_running_status{job=~\"$job\", vm_name=~\"$vm\", dc_name=\"$dc_name\", ds_name=~\"$datastore\", cluster_name=\"\"}",
+              "interval": "",
+              "legendFormat": "VM: {{vm_name}} Datacenter: {{ dc_name }} Datastore: {{ds_name}} {{ cluster_name }}Tools status: {{tools_status}}",
+              "refId": "A"
+            }
+          ],
+          "title": "VM tools running status",
+          "type": "timeseries"
+        }
+      ],
+      "title": "VM tools",
+      "type": "row"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 35,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "vmware_vcenter2",
+          "value": "vmware_vcenter2"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "job",
+        "multi": false,
+        "name": "job",
+        "options": [
+          {
+            "selected": false,
+            "text": "vmware_vcenter",
+            "value": "vmware_vcenter"
+          },
+          {
+            "selected": true,
+            "text": "vmware_vcenter2",
+            "value": "vmware_vcenter2"
+          }
+        ],
+        "query": "vmware_vcenter,vmware_vcenter2",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": [
+            "bono",
+            "cn-monitor-3",
+            "cn-monitor-4",
+            "dime",
+            "ellis",
+            "homer",
+            "powermonitor",
+            "sensor",
+            "sprout",
+            "vellum",
+            "cn-worker-01",
+            "cn-master-01",
+            "cn-worker-02",
+            "cn-worker-03",
+            "odl"
+          ],
+          "value": [
+            "bono",
+            "cn-monitor-3",
+            "cn-monitor-4",
+            "dime",
+            "ellis",
+            "homer",
+            "powermonitor",
+            "sensor",
+            "sprout",
+            "vellum",
+            "cn-worker-01",
+            "cn-master-01",
+            "cn-worker-02",
+            "cn-worker-03",
+            "odl"
+          ]
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "ljhTj8Enk"
+        },
+        "definition": "label_values(vmware_vm_power_state, vm_name)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "vm",
+        "multi": true,
+        "name": "vm",
+        "options": [],
+        "query": {
+          "query": "label_values(vmware_vm_power_state, vm_name)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "ha-datacenter",
+          "value": "ha-datacenter"
+        },
+        "definition": "label_values(dc_name)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "dc_name",
+        "multi": false,
+        "name": "dc_name",
+        "options": [],
+        "query": {
+          "query": "label_values(dc_name)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": [
+            "backup",
+            "datastore1",
+            "datastore2"
+          ],
+          "value": [
+            "backup",
+            "datastore1",
+            "datastore2"
+          ]
+        },
+        "definition": "label_values(ds_name)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "ds_name",
+        "multi": true,
+        "name": "datastore",
+        "options": [],
+        "query": {
+          "query": "label_values(ds_name)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": false,
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "VM Stats",
+  "uid": "Sl3uaY2Zk",
+  "version": 139,
+  "weekStart": ""
+}

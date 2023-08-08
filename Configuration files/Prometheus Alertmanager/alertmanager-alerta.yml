@@ -1,0 +1,18 @@
+# Connection of Prometheus Alertmanager and Alerta
+# This file is located at the path /etc/prometheus/alertmanager
+route:
+  group_by: ['alertname']
+  group_wait: 10s
+  group_interval: 3m
+  repeat_interval: 1m
+  receiver: 'alerta'
+receivers:
+  - name: 'alerta'
+    webhook_configs:
+      - url: 'http://onos.telecom.ece.ntua.gr/api/webhooks/prometheus'
+inhibit_rules:
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'dev', 'instance']

@@ -1,0 +1,33 @@
+# This file is located at the path /opt/vmware_exporter
+default:
+atlas:
+    vsphere_host: atlas.telecom.ntua.gr
+    vsphere_user: '*********'
+    vsphere_password: '**********'
+    ignore_ssl: True
+    specs_size: 5000
+    fetch_custom_attributes: False
+    fetch_tags: False
+    fetch_alarms: True
+    collect_only:
+        vms: True
+        vmguests: True
+        datastores: True
+        hosts: True
+        snapshots: True
+
+uranos:
+    vsphere_host: uranos.cn.ntua.gr
+    vsphere_user: '********'
+    vsphere_password: '********'
+    ignore_ssl: True
+    specs_size: 5000
+    fetch_custom_attributes: False
+    fetch_tags: False
+    fetch_alarms: True
+    collect_only:
+        vms: True
+        vmguests: True
+        datastores: True
+        hosts: True
+        snapshots: True

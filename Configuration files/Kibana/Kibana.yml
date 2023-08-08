@@ -1,0 +1,15 @@
+# This file is located at the path /etc/kibana
+# Kibana is served by a back end server. This setting specifies the port to use.
+server.port: 5601
+
+# To allow connections from remote users, set this parameter to a non-loopback address.
+server.host: "localhost"
+
+server.publicBaseUrl: "https://localhost:5601"
+
+# The Kibana server's name.  This is used for display purposes.
+server.name: "cn-monitor-1"
+
+# is proxied through the Kibana server.
+elasticsearch.username: "*******"
+elasticsearch.password: "*******"

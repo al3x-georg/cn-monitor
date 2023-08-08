@@ -1,0 +1,35 @@
+# Connection of Prometheus Alertmanager and Slack
+# This file is located at the path /etc/prometheus/alertmanager
+global:
+resolve_timeout: 1m
+route:
+receiver: 'slack-notifications'
+receivers:
+- name: 'slack-notifications'
+slack_configs:
+- channel: '#alerts'
+api_url: 'https://hooks.slack.com/services/Here_Is_The_Secret_Webhook_URL'
+send_resolved: true
+icon_url: https://avatars3.githubusercontent.com/u/3380462
+title: |-
+[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{
+.CommonLabels.alertname }} for {{ .CommonLabels.job }}
+{{- if gt (len .CommonLabels) (len .GroupLabels) -}}
+{{" "}}(
+{{- with .CommonLabels.Remove .GroupLabels.Names }}
+{{- range $index, $label := .SortedPairs -}}
+{{ if $index }}, {{ end }}
+{{- $label.Name }}="{{ $label.Value -}}"
+{{- end }}
+{{- end -}}
+)
+106
+{{- end }}
+text: >-
+{{ range .Alerts -}}
+*Alert:* {{ .Annotations.title }}{{ if .Labels.severity }} - `{{ .Labels.severity }}`{{ end }}
+*Description:* {{ .Annotations.description }}
+*Details:*
+{{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+{{ end }}
+{{ end }}
